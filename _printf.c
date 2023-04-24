@@ -18,24 +18,27 @@ int _printf(const char *format, ...)
 		if (*format != '%')
 		{
 			_putchar(*format);
+			num++;
 			continue;
 		}
 		switch (*++format)
 		{
 			case 'c':
 				_putchar(va_arg(print, int));
+				num++;
 				break;
 			case 's':
 				str = va_arg(print, char *);
 				while (*str)
 					_putchar(*str++);
+					num++;
 				break;
 			default:
 				_putchar('%');
 				_putchar(*format);
+				num++;
 				break;
 		}
-		num++;
 	}
 	return (num);
 }
