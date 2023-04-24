@@ -9,6 +9,7 @@
 int _printf(const char *format, ...)
 {
 	char *str;
+	int num = 0;
 	va_list print;
 
 	va_start(print, format);
@@ -34,6 +35,7 @@ int _printf(const char *format, ...)
 				_putchar(*format);
 				break;
 		}
+		num++;
 	}
-	return (0);
+	return (num);
 }
