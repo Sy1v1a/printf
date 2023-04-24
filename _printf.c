@@ -2,62 +2,39 @@
 #include <stdio.h>
 #include "main.h"
 /**
- * _printf - produces output according to a format
- * @format: a character string
- * return: the number of character printed excluding NULL
+ * _printf - A function that produces output according to a format.
+ * @format: A Character string
+ * Return: 0;
  */
 int _printf(const char *format, ...)
 {
-int i = 0;
-va_list print;
-va_start(print, format);
+	char *str;
+	va_list print;
 
-while (format[i])
-{
-if (format[i] == '%')
-{
-	i++;
-switch (format[i])
-{
-case 'c':
-{
-int r = va_arg(print, int);
-printf("%c", r);
-break;
-}
-case 'd':
-{
-int r = va_arg(print, int);
-printf("%d", r);
-break;
-}
-case 'i':
-{
-int r = va_arg(print, int);
-printf("%d", r);
-break;
-}
-case 's':
-{
-char *r = va_arg(print, char*);
-printf("%s", r);
-break;
-}
-case '%':
-putchar('%');
-break;
+	va_start(print, format);
+	for (; *format; ++format)
+	{
+		if (*format != '%')
+		{
+			_putchar(*format);
+			continue;
+		}
 
-default:
-putchar(format[i]);
-break;
-}
-}
-else
-{
-putchar(format[i]);
-}
-i++;
-}
-va_end(print);
-return 0;
+		switch (*++format)
+		{
+			case 'c':
+				_putchar(va_arg(print, int));
+				break;
+			case 's':
+				str = va_arg(print, char *);
+				while (*str)
+					_putchar(*++str);
+				break;
+			default:
+				_putchar('%');
+				_putchar(*format);
+				break;
+		}
+	}
+	return (0);
 }
