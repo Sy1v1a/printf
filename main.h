@@ -64,10 +64,10 @@ int printnonprintable(va_list type, char buffer[],
 int printpointer(va_list type, char buffer[],
 	int flag, int width, int precision, int size);
 
-int flag(const char *format, int *i);
-int width(const char *format, int *i, va_list list);
-int precision(const char *format, int *i, va_list list);
-int size(const char *format, int *i);
+int getflag(const char *format, int *i);
+int getwidth(const char *format, int *i, va_list list);
+int getprecision(const char *format, int *i, va_list list);
+int getsize(const char *format, int *i);
 
 int printreverse(va_list type, char buffer[],
 	int flag, int width, int precision, int size);
@@ -90,7 +90,7 @@ char buffer[],
 
 int isprintable(char);
 int appendhexacode(char, char[], int);
-int isdigit(char);
+int is_digit(char);
 
 long int convertsizenumber(long int num, int size);
 long int convertsizeunsgnd(unsigned long int num, int size);

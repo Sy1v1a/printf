@@ -1,6 +1,6 @@
 #include "main.h"
 
-void printbuffer(char buffer[], int *buff_ind);
+void printbuffer(char buffer[], int *buffind);
 
 /**
  * _printf - Printf function
@@ -31,10 +31,10 @@ int _printf(const char *format, ...)
 		else
 		{
 			printbuffer(buffer, &buffind);
-			flag = flag(format, &i);
-			width = width(format, &i, list);
-			precision = precision(format, &i, list);
-			size = size(format, &i);
+			flag = getflag(format, &i);
+			width = getwidth(format, &i, list);
+			precision = getprecision(format, &i, list);
+			size = getsize(format, &i);
 			++i;
 			printed = print(format, &i, list, buffer,
 				flag, width, precision, size);

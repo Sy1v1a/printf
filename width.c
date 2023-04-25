@@ -13,7 +13,7 @@ int getwidth(const char *format, int *i, va_list list)
 
 	for (k = *i + 1; format[k] != '\0'; k++)
 	{
-		if (isdigit(format[k]))
+		if (is_digit(format[k]))
 		{
 			width *= 10;
 			width += format[k] - '0';

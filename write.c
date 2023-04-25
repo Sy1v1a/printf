@@ -165,13 +165,13 @@ int writeunsgnd(int isnegative, int ind,
 		length++;
 	}
 
-	if ((flag & t_ZERO) && !(flag & T_MINUS))
+	if ((flag & T_ZERO) && !(flag & T_MINUS))
 		pat = '0';
 
 	if (width > length)
 	{
 		for (i = 0; i < width - length; i++)
-			buffer[i] = padd;
+			buffer[i] = pat;
 
 		buffer[i] = '\0';
 

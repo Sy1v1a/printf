@@ -5,6 +5,7 @@
  * @i: take parameter
  * return: flag
  */
+int getflag(const char *format, int *i)
 {
 	int j, k;
 	int flag = 0;

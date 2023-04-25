@@ -15,7 +15,7 @@ int printunsigned(va_list type, char buffer[],
 	int i = BUFSIZE - 2;
 	unsigned long int num = va_arg(type, unsigned long int);
 
-	num = convert_size_unsgnd(num, size);
+	num = convertsizeunsgnd(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
@@ -30,7 +30,7 @@ int printunsigned(va_list type, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flag, width, precision, size));
+	return (writeunsgnd(0, i, buffer, flag, width, precision, size));
 }
 
 /**
@@ -66,7 +66,7 @@ int printoctal(va_list type, char buffer[],
 		num /= 8;
 	}
 
-	if (flag & F_HASH && init_num != 0)
+	if (flag & T_HASH && init_num != 0)
 		buffer[i--] = '0';
 
 	i++;
@@ -87,7 +87,7 @@ int printoctal(va_list type, char buffer[],
 int printhexadecimal(va_list type, char buffer[],
 	int flag, int width, int precision, int size)
 {
-	return (printhexa(types, "0123456789abcdef", buffer,
+	return (printhexa(type, "0123456789abcdef", buffer,
 		flag, 'x', width, precision, size));
 }
 
@@ -101,10 +101,10 @@ int printhexadecimal(va_list type, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int printhexaupper(va_list types char buffer[],
+int printhexaupper(va_list type, char buffer[],
 	int flag, int width, int precision, int size)
 {
-	return (printhexa(types, "0123456789ABCDEF", buffer,
+	return (printhexa(type, "0123456789ABCDEF", buffer,
 		flag, 'X', width, precision, size));
 }
 
@@ -117,8 +117,8 @@ int printhexaupper(va_list types char buffer[],
  * @size: size specifier
  * return: number of char to be printed
  */
-int printhexa(va_list type, char map_to[], char buffer[],
-	int flag, char flag_ch, int width, int precision, int size)
+int printhexa(va_list type, char mapto[], char buffer[],
+	int flag, char flagch, int width, int precision, int size)
 {
 	int i = BUFSIZE - 2;
 	unsigned long int num = va_arg(type, unsigned long int);
@@ -139,7 +139,7 @@ int printhexa(va_list type, char map_to[], char buffer[],
 		num /= 16;
 	}
 
-	if (flag & F_HASH && init_num != 0)
+	if (flag & T_HASH && init_num != 0)
 	{
 		buffer[i--] = flagch;
 		buffer[i--] = '0';
