@@ -1,39 +1,65 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
+
+void printbuffer(char buffer[], int *buff_ind);
+
 /**
- * _printf - A function that produces output according to a format.
- * @format: A Character string
- * Return: The number of characters printed;
+ * _printf - Printf function
+ * @format: format.
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
-	char *str;
-	va_list print;
+	int i, printed = 0, printedchars = 0;
+	int flag, width, precision, size, buffind = 0;
+	va_list list;
+	char buffer[BUFSIZE];
 
-	va_start(print, format);
-	for (; *format != '\0'; format++)
+	if (format == NULL)
+		return (-1);
+
+	va_start(list, format);
+
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (*format != '%')
+		if (format[i] != '%')
 		{
-			_putchar(*format);
-			continue;
+			buffer[buffind++] = format[i];
+			if (buffind == BUFSIZE)
+				printbuffer(buffer, &buffind);
+			printedchars++;
 		}
-		switch (*++format)
+		else
 		{
-			case 'c':
-				_putchar(va_arg(print, int));
-				break;
-			case 's':
-				str = va_arg(print, char *);
-				while (*str)
-					_putchar(*str++);
-				break;
-			default:
-				_putchar('%');
-				_putchar(*format);
-				break;
+			printbuffer(buffer, &buffind);
+			flag = flag(format, &i);
+			width = width(format, &i, list);
+			precision = precision(format, &i, list);
+			size = size(format, &i);
+			++i;
+			printed = print(format, &i, list, buffer,
+				flag, width, precision, size);
+			if (printed == -1)
+				return (-1);
+			printedchars += printed;
 		}
 	}
-	return (0);
+
+	printbuffer(buffer, &buffind);
+
+	va_end(list);
+
+	return (printedchars);
+}
+
+/**
+ * printbuffer - Prints the contents of the buffer if it exist
+ * @buffer: Array of chars
+ * @buffind: Index at which to add next char, represents the length.
+ */
+void printbuffer(char buffer[], int *buffind)
+{
+	if (*buffind > 0)
+		write(1, &buffer[0], *buffind);
+
+	*buffind = 0;
 }
