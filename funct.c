@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * printchar - prints char
+ * printchars - prints char
  * @type: list of argument
  * @buffer: buffer array
  * @flag: calculate flags
@@ -9,7 +9,7 @@
  * @size: size specifier
  * return: number of char printed 
  */
-int printchar(va_list type, char buffer[], int flag, int width, int precision, int size)
+int printchars(va_list type, char buffer[], int flag, int width, int precision, int size)
 {
 	char c = va_arg(type, int);
 	return (writechar(c, buffer, flag, width, precision, size));
@@ -79,7 +79,7 @@ int printstring(va_list type, char buffer[], int flag, int width, int precision,
  * @size: size specifier
  * return: number of char printed
  */
-int printpercentt(va_list type, char buffer[],
+int printpercent(va_list type, char buffer[],
 	int flag, int width, int precision, int size)
 {
 	UNUSED(type);

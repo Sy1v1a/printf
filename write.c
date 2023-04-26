@@ -10,7 +10,7 @@
  *
  * Return: Number of chars printed.
  */
-int writchar(char c, char buffer[],
+int writechar(char c, char buffer[],
 	int flag, int width, int precision, int size)
 {
 	int i = 0;

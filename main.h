@@ -33,11 +33,11 @@ struct fmt
 typedef struct fmt fmtt;
 
 int _printf(const char *format, ...);
-int print(const char *fmt, int *i,
+int print(const char *fmt, int *ind,
 va_list list, char buffer[], int flag, int width, int precision, int size);
 
 
-int printchar(va_list type, char buffer[],
+int printchars(va_list type, char buffer[],
 	int flag, int width, int precision, int size);
 int printstring(va_list type, char buffer[],
 	int flag, int width, int precision, int size);

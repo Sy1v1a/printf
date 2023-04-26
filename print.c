@@ -17,7 +17,7 @@ int print(const char *fmt, int *ind, va_list list, char buffer[],
 {
 	int i, unknowlen = 0, printedchars = -1;
 	fmtt fmttypes[] = {
-		{'c', printchar}, {'s', printstring}, {'%', printpercent},
+		{'c', printchars}, {'s', printstring}, {'%', printpercent},
 		{'i', printint}, {'d', printint}, {'b', printbinary},
 		{'u', printunsigned}, {'o', printoctal}, {'x', printhexadecimal},
 		{'X', printhexaupper}, {'p', printpointer}, {'S', printnonprintable},
